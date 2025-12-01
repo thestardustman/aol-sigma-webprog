@@ -3,7 +3,6 @@
 	2. Hazel Z. Adityo - 2702329576
 	3. Marcell Prasetyo - 2702229895
 	4. Satya D. Padmakumara - 2702244662
-	5. Siddharta R. Wallace - 2702215233
 
 # Laravel
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
