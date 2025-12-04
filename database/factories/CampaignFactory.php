@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
-class UserFactory extends Factory
+class CampaignFactory extends Factory
 {
     /**
      * The current password being used by the factory.
@@ -24,13 +24,11 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password default: 'password'
-            // TAMBAHAN
-            'phone' => $this->faker->phoneNumber(),
-            'address' => $this->faker->address(),
+            'activity_name' => $this->faker->sentence(3), // Judul kegiatan (3 kata)
+            'community_name' => $this->faker->company(),
+            'description' => $this->faker->paragraph(3),
+            'image' => 'https://via.placeholder.com/640x480.png/007bff?text=SDG+Hope', // Gambar dummy
+            'date' => $this->faker->dateTimeBetween('now', '+1 year'),
         ];
     }
 }
