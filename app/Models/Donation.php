@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Donation extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'campaign_id', 'amount', 'status'];
+    protected $fillable = ['id_user', 
+    'id_campaign', 
+    'jumlah', 
+    'status'];
     
-    public function user() { return $this->belongsTo(User::class); }
+    public function user() { 
+        return $this->belongsTo(User::class); 
+    }
 }

@@ -13,14 +13,20 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
         $table->id();
-        $table->string('name');
+        $table->string('nama');
         $table->string('email')->unique();
         $table->string('password');
-        // Tambahan Biodata
-        $table->string('phone')->nullable();
-        $table->text('address')->nullable();
+        $table->string('nomor_telepon')->nullable();
+        $table->date('tanggal_lahir')->nullable();
+        $table->string('tempat_lahir')->nullable();
+        $table->text('alamat')->nullable();
+        $table->string('kota')->nullable();
+        $table->string('provinsi')->nullable();
+        $table->string('negara')->nullable();
+        $table->string('kode_zip')->nullable();
+        $table->string('gender')->nullable();
+
         $table->timestamps();
-        $table->timestamp('email_verified_at')->nullable();
     });
 
     }

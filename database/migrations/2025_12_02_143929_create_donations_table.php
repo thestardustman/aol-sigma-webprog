@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('donations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained(); // Relasi ke User
-            $table->foreignId('campaign_id')->nullable(); // Kalau NULL berarti Donasi General
-            $table->decimal('amount', 15, 2);
-            $table->string('status'); // 'successful' atau 'denied'
+            $table->foreignId('id_user')->constrained();
+            $table->foreignId('id_campaign')->nullable(); // Null = Donasi secara umum
+            $table->decimal('jumlah', 15, 2);
+            $table->string('status');
             $table->timestamps();
         });
     }
