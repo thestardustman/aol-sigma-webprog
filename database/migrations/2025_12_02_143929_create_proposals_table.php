@@ -13,10 +13,27 @@ return new class extends Migration
     {
         Schema::create('proposals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->string('activity_name');
-            $table->decimal('target_amount', 15, 2);
-            $table->string('proposal_file'); // Path file PDF/Word/Foto
+            $table->foreignId('id_user')->constrained(); // User login
+
+            // Info Aktivitas
+            $table->string('nama_aktivitas');
+            $table->date('tanggal_aktivitas');
+            $table->text('alamat_aktivitas');
+            $table->decimal('target_dana', 15, 2);
+
+            // Penanggung Jawab
+            $table->string('nama_pic');
+            $table->string('tempat_lahir_pic');
+            $table->date('tanggal_lahir_pic');
+            $table->text('alamat_pic');
+            $table->string('kota_pic');
+            $table->string('provinsi_pic');
+            $table->string('negara_pic');
+            $table->string('kode_zip_pic');
+            $table->string('gender_pic');
+
+            // File
+            $table->string('file_proposal');
             $table->timestamps();
         });
     }

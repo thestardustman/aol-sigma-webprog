@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
-            $table->string('activity_name'); // Nama Kegiatan
-            $table->string('community_name'); // Nama Komunitas
-            $table->text('description');
-            $table->string('image'); // Foto
-            $table->date('date'); // Tanggal
+            $table->string('title');
+            $table->string('nama_komunitas');
+            $table->text('deskripsi');
+            $table->string('gambar');
+            $table->date('tanggal');
             $table->timestamps();
         });
     }

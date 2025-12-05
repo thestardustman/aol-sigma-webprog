@@ -18,11 +18,18 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'nama',
         'email',
         'password',
-        'phone', 
-        'address'
+        'nomor_telepon', 
+        'alamat',
+        'tanggal_lahir',
+        'tempat_lahir',
+        'kota',
+        'provinsi',
+        'negara',
+        'kode_zip',
+        'gender',
     ];
 
     /**
@@ -47,4 +54,15 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function proposals()
+    {
+        return $this->hasMany(Proposal::class);
+    }
+
+    public function donations()
+    {
+        return $this->hasMany(Donation::class);
+    }
+    
 }

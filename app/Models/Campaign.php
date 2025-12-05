@@ -8,5 +8,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Campaign extends Model
 {
     use HasFactory;
-    protected $fillable = ['activity_name', 'community_name', 'description', 'image', 'date'];
+    protected $fillable = [
+        'title', 
+        'nama_komunitas', 
+        'deskirpsi', 
+        'gambar', 
+        'tanggal',
+    ];
 }
