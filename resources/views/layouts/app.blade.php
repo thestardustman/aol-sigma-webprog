@@ -41,7 +41,7 @@
         <nav class="navbar navbar-expand-md navbar-light shadow-sm sticky-top py-3">
             <div class="container">
                 <a class="navbar-brand fw-bold fs-3" href="{{ url('/') }}" style="color: var(--primary-color);">
-                    SDG-HOPE
+                    Bantu.in
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
                     <span class="navbar-toggler-icon"></span>
@@ -100,10 +100,12 @@
         </main>
 
         <!-- FOOTER -->
+        <!-- FOOTER -->
         <footer class="text-white py-5 mt-auto">
-            <div class="container">
-                <div class="row gy-4">
-                    <div class="col-md-4">
+            <div class="container-fluid px-4 px-md-5"> 
+                <div class="row gy-4 align-items-center">
+                    
+                    <div class="col-md-4 text-center text-md-start">
                         <h6 class="text-primary fw-bold text-uppercase mb-3">Kontak</h6>
                         <ul class="list-unstyled text-secondary small" style="line-height: 1.8;">
                             <li>Jl. SDG No. 1, Jakarta</li>
@@ -111,18 +113,21 @@
                             <li>help@sdghope.com</li>
                         </ul>
                     </div>
+
                     <div class="col-md-4 text-center">
                         <h6 class="text-white fw-bold text-uppercase mb-3">SDG-HOPE</h6>
-                        <p class="text-secondary small">&copy; 2025 Hak Cipta Dilindungi.</p>
+                        <p class="text-secondary small mb-0">&copy; 2025 Hak Cipta Dilindungi.</p>
                     </div>
-                    <div class="col-md-4 text-md-end">
+
+                    <div class="col-md-4 text-center text-md-end"> <!-- text-md-end = Rata Kanan di layar laptop -->
                         <h6 class="text-primary fw-bold text-uppercase mb-3">Sosial Media</h6>
-                        <div class="d-flex justify-content-md-end gap-3">
+                        <div class="d-flex justify-content-center justify-content-md-end gap-3">
                             <a href="#" class="text-secondary text-decoration-none small">Instagram</a>
                             <a href="#" class="text-secondary text-decoration-none small">Twitter</a>
                             <a href="#" class="text-secondary text-decoration-none small">Facebook</a>
                         </div>
                     </div>
+
                 </div>
             </div>
         </footer>
