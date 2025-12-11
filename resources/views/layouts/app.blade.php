@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SDG-HOPE</title>
+    <title>Bantu.in</title>
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css?family=Nunito:400,600,700,800" rel="stylesheet">
     <!-- Scripts -->
