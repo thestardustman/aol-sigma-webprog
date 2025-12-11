@@ -13,19 +13,21 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
         $table->id();
-        $table->string('nama');
+        $table->string('name');
         $table->string('email')->unique();
+        $table->timestamp('email_verified_at')->nullable();
         $table->string('password');
-        $table->string('nomor_telepon')->nullable();
-        $table->date('tanggal_lahir')->nullable();
-        $table->string('tempat_lahir')->nullable();
-        $table->text('alamat')->nullable();
-        $table->string('kota')->nullable();
-        $table->string('provinsi')->nullable();
-        $table->string('negara')->nullable();
-        $table->string('kode_zip')->nullable();
+        $table->string('phone')->nullable();
+        $table->date('birth_date')->nullable();
+        $table->string('birth_place')->nullable();
+        $table->text('address')->nullable();
+        $table->string('city')->nullable();
+        $table->string('province')->nullable();
+        $table->string('country')->nullable();
+        $table->string('zip_code')->nullable();
         $table->string('gender')->nullable();
 
+        $table->rememberToken();
         $table->timestamps();
     });
 

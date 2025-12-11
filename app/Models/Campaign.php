@@ -10,9 +10,9 @@ class Campaign extends Model
     use HasFactory;
     protected $fillable = [
         'title', 
-        'nama_komunitas', 
-        'deskirpsi', 
-        'gambar', 
-        'tanggal',
+        'community_name', 
+        'description', 
+        'img', 
+        'date',
     ];
 }

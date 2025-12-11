@@ -7,21 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 class Proposal extends Model
 {
     protected $fillable = [
-        'id_user', 
-        'nama_aktivitas',
-        'tanggal_aktivitas',
-        'alamat_aktivitas', 
-        'target_dana', 
-        'nama_pic',
-        'tempat_lahir_pic',
-        'tanggal_lahir_pic',
-        'alamat_pic',
-        'kota_pic',
-        'provinsi_pic',
-        'negara_pic',
-        'kode_zip_pic',
-        'gender_pic',
-        'file_proposal',
+        'user_id', 
+        'activity_name',
+        'activity_date',
+        'activity_address', 
+        'target_amount', 
+        'pic_name',
+        'pic_birth_place',
+        'pic_birth_date',
+        'pic_address',
+        'pic_city',
+        'pic_province',
+        'pic_country',
+        'pic_zip',
+        'pic_gender',
+        'proposal_file',
 ];
 
     public function user() {

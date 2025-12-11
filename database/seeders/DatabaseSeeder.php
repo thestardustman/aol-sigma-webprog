@@ -19,6 +19,13 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
             'phone' => '081234567890',
             'address' => 'Jl. SDG Pusat No. 1, Jakarta',
+            'birth_date' => '2000-01-01',
+            'birth_place' => 'Rumah sakit',
+            'city' => 'Jakarta Barat',
+            'province' => 'DKI Jakarta',
+            'country' => 'Indonesia',
+            'zip_code' => '1234',
+            'gender' => 'Laki-laki'
         ]);
 
         // 2. Buat 10 User Random lain

@@ -18,14 +18,14 @@ class WebController extends Controller
             [
                 'title' => 'Menyelamatkan Terumbu Karang',
                 'date' => '2025-01-10',
-                'desc' => 'Kegiatan restorasi karang di Bali untuk SDG 14.',
+                'description' => 'Kegiatan restorasi karang di Bali untuk SDG 14.',
                 'img' => 'https://via.placeholder.com/800x400?text=Ocean+Conservation',
                 'link' => '#'
             ],
             [
                 'title' => 'Infrastruktur Hijau Desa',
                 'date' => '2025-02-15',
-                'desc' => 'Pembangunan jembatan ramah lingkungan SDG 9.',
+                'description' => 'Pembangunan jembatan ramah lingkungan SDG 9.',
                 'img' => 'https://via.placeholder.com/800x400?text=Green+Infrastructure',
                 'link' => '#'
             ]
@@ -110,7 +110,18 @@ class WebController extends Controller
         Proposal::create([
             'user_id' => Auth::id(),
             'activity_name' => $request->activity_name,
+            'activity_date' => $request->activity_date,
+            'activity_address' => $request->activity_address,
             'target_amount' => $request->target_amount,
+            'pic_name' => $request->pic_name,
+            'pic_city' => $request->pic_city,
+            'pic_zip' => $request->pic_zip,
+            'pic_birth_place' => '-',
+            'pic_birth_date' => '2000-01-01',
+            'pic_address' => '-', 
+            'pic_province' => '-',
+            'pic_country' => '-',
+            'pic_gender' => '-', 
             'proposal_file' => $fileName
         ]);
 
