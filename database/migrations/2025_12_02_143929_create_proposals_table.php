@@ -13,27 +13,27 @@ return new class extends Migration
     {
         Schema::create('proposals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_user')->constrained(); // User login
+            $table->foreignId('user_id')->constrained('users')->onDelete('Cascade'); // User login
 
             // Info Aktivitas
-            $table->string('nama_aktivitas');
-            $table->date('tanggal_aktivitas');
-            $table->text('alamat_aktivitas');
-            $table->decimal('target_dana', 15, 2);
+            $table->string('activity_name');
+            $table->date('activity_date');
+            $table->text('activity_address');
+            $table->decimal('target_amount', 15, 2);
 
             // Penanggung Jawab
-            $table->string('nama_pic');
-            $table->string('tempat_lahir_pic');
-            $table->date('tanggal_lahir_pic');
-            $table->text('alamat_pic');
-            $table->string('kota_pic');
-            $table->string('provinsi_pic');
-            $table->string('negara_pic');
-            $table->string('kode_zip_pic');
-            $table->string('gender_pic');
+            $table->string('pic_name');
+            $table->string('pic_birth_place');
+            $table->date('pic_birth_date');
+            $table->text('pic_address');
+            $table->string('pic_city');
+            $table->string('pic_province');
+            $table->string('pic_country');
+            $table->string('pic_zip');
+            $table->string('pic_gender');
 
             // File
-            $table->string('file_proposal');
+            $table->string('proposal_file');
             $table->timestamps();
         });
     }

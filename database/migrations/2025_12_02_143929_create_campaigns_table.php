@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('nama_komunitas');
-            $table->text('deskripsi');
-            $table->string('gambar');
-            $table->date('tanggal');
+            $table->string('community_name');
+            $table->text('description');
+            $table->string('img');
+            $table->date('date');
             $table->timestamps();
         });
     }

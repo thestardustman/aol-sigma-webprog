@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('donations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_user')->constrained();
-            $table->foreignId('id_campaign')->nullable(); // Null = Donasi secara umum
-            $table->decimal('jumlah', 15, 2);
+            $table->foreignId('user_id')->constrained('users')->onDelete('Cascade');
+            $table->foreignId('campaign_id')->nullable()->nullable(); // Null = Donasi secara umum
+            $table->decimal('amount', 15, 2);
             $table->string('status');
             $table->timestamps();
         });

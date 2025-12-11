@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -52,8 +52,15 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone' => ['required', 'string'],   // Wajib isi
-            'address' => ['required', 'string'], // Wajib isi
+            'phone' => ['required', 'numeric', 'digits:12'], 
+            'address' => ['required', 'string'],
+            'birth_date' => ['required', 'date'],
+            'birth_place' => ['required', 'string'],
+            'city' => ['required', 'string'],
+            'province' => ['required', 'string'],
+            'country' => ['required', 'string'],
+            'zip_code' => ['required', 'string'],
+            'gender' => ['required', 'string'],
         ]);
     }
 
@@ -69,14 +76,14 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'nomor_telepon' => $data['nomor_telepon'],
-            'alamat' => $data['alamat'],
-            'tanggal_lahir' => $data['tanggal_lahir'],
-            'tempat_lahir' => $data['tempat_lahir'],
-            'kota' => $data['kota'],
-            'provinsi' => $data['provinsi'],
-            'negara' => $data['negara'],
-            'kode_zip' => $data['kode_zip'],
+            'phone' => $data['phone'],
+            'address' => $data['address'],
+            'birth_date' => $data['birth_date'],
+            'birth_place' => $data['birth_place'],
+            'city' => $data['city'],
+            'province' => $data['province'],
+            'country' => $data['country'],
+            'zip_code' => $data['zip_code'],
             'gender' => $data['gender']
         ]);
     }

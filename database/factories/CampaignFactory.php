@@ -24,10 +24,10 @@ class CampaignFactory extends Factory
     public function definition()
     {
         return [
-            'activity_name' => $this->faker->sentence(3), // Judul kegiatan (3 kata)
+            'title' => $this->faker->sentence(3), // Judul kegiatan (3 kata)
             'community_name' => $this->faker->company(),
             'description' => $this->faker->paragraph(3),
-            'image' => 'https://via.placeholder.com/640x480.png/007bff?text=SDG+Hope', // Gambar dummy
+            'img' => 'https://via.placeholder.com/640x480.png/007bff?text=SDG+Hope', // Gambar dummy
             'date' => $this->faker->dateTimeBetween('now', '+1 year'),
         ];
     }
