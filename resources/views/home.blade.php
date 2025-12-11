@@ -1,71 +1,87 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    
-    <!-- HEADER -->
-    <div class="text-center mb-5">
-        <h1 class="display-3 font-weight-bold">SDG-HOPE</h1>
-        <p class="lead">Platform donasi untuk mendukung SDG 9, 14, 15, dan 16.</p>
+<!-- Hero Section -->
+<div class="hero-section text-center mb-5">
+    <div class="container">
+        <h1 class="display-4 fw-bold mb-3">{{ __('messages.hero_title') }}</h1>
+        <p class="lead mb-0">{{ __('messages.hero_desc') }}</p>
     </div>
+</div>
 
-    <!-- SLIDER / CAROUSEL ARTIKEL -->
-    <div id="articleSlider" class="carousel slide mb-5" data-ride="carousel">
+<div class="container">
+    <!-- Artikel Slider -->
+    <h3 class="fw-bold border-start border-4 border-primary ps-3 mb-3">{{ __('messages.latest_news') }}</h3>
+    
+    <div id="newsCarousel" class="carousel slide mb-5 shadow rounded overflow-hidden" data-bs-ride="carousel">
         <div class="carousel-inner">
             @foreach($articles as $index => $art)
             <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                <img src="{{ $art['image'] }}" class="d-block w-100" style="height: 350px; object-fit: cover; opacity: 0.8;">
-                <div class="carousel-caption d-none d-md-block bg-dark text-white rounded p-3">
-                    <h5><a href="{{ $art['link'] }}" class="text-white">{{ $art['title'] }}</a></h5>
-                    <small>{{ $art['date'] }}</small>
-                    <p>{{ $art['desc'] }}</p>
+                <div class="row g-0 bg-white">
+                    <div class="col-md-6">
+                        <!-- Perbaikan: Controller kamu mengirim key 'img', jadi panggil $art['img'] -->
+                        <img src="{{ $art['img'] }}" class="d-block w-100" style="height: 300px; object-fit: cover;">
+                    </div>
+                    <div class="col-md-6 p-4 d-flex flex-column justify-content-center">
+                        <h5 class="fw-bold">{{ $art['title'] }}</h5>
+                        <p class="text-muted mb-2"><small>{{ $art['date'] }}</small></p>
+                        <p class="card-text">{{ $art['desc'] }}</p>
+                    </div>
                 </div>
             </div>
             @endforeach
         </div>
-        <a class="carousel-control-prev" href="#articleSlider" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </a>
-        <a class="carousel-control-next" href="#articleSlider" role="button" data-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </a>
+        <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-dark rounded-circle p-3"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-dark rounded-circle p-3"></span>
+        </button>
     </div>
 
-    <!-- ISI (3 TOMBOL) -->
-    <div class="row text-center">
-        <!-- 1. DONATE (General) - Warna Biru -->
-        <div class="col-md-4 mb-3">
-            <div class="card shadow h-100">
-                <div class="card-body">
-                    <h3 class="text-primary">DONATE</h3>
-                    <p>Donasi umum untuk semua kegiatan.</p>
-                    <a href="{{ route('donate.general') }}" class="btn btn-primary btn-lg btn-block">DONATE</a>
+    <!-- 3 Tombol Utama (Link Route Sesuai web.php) -->
+    <div class="row g-4 text-center mb-5">
+        <!-- DONATE -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm card-hover">
+                <div class="card-body py-5">
+                    <h3 class="fw-bold text-primary">{{ __('messages.btn_donate') }}</h3>
+                    <p class="text-muted">{{ __('messages.desc_donate') }}</p>
+                </div>
+                <div class="card-footer bg-white border-0 pb-4">
+                    <!-- Link ke route 'donate' yang mengarah ke donateGeneral() -->
+                    <a href="{{ route('donate') }}" class="btn btn-primary w-100 rounded-pill py-2">{{ __('messages.btn_go') }}</a>
                 </div>
             </div>
         </div>
 
-        <!-- 2. PICK WHERE - Warna Hijau (Misal) -->
-        <div class="col-md-4 mb-3">
-            <div class="card shadow h-100">
-                <div class="card-body">
-                    <h3 class="text-success">PICK WHERE YOUR DONATION GOES</h3>
-                    <p>Pilih komunitas spesifik.</p>
-                    <a href="{{ route('campaigns.index') }}" class="btn btn-success btn-lg btn-block">PICK</a>
+        <!-- PICK -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm card-hover">
+                <div class="card-body py-5">
+                    <h3 class="fw-bold text-success">{{ __('messages.btn_pick') }}</h3>
+                    <p class="text-muted">{{ __('messages.desc_pick') }}</p>
+                </div>
+                <div class="card-footer bg-white border-0 pb-4">
+                    <!-- Link ke route 'pick.list' yang mengarah ke listCampaigns() -->
+                    <a href="{{ route('pick.list') }}" class="btn btn-success w-100 rounded-pill py-2">{{ __('messages.btn_go') }}</a>
                 </div>
             </div>
         </div>
 
-        <!-- 3. MAKE A DONATION - Warna Kuning/Warning (BEDA WARNA) -->
-        <div class="col-md-4 mb-3">
-            <div class="card shadow h-100">
-                <div class="card-body">
-                    <h3 class="text-warning">MAKE A DONATION</h3>
-                    <p>Ajukan proposal kegiatanmu.</p>
-                    <a href="{{ route('proposal.create') }}" class="btn btn-warning btn-lg btn-block text-white">PROPOSE</a>
+        <!-- MAKE -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm card-hover">
+                <div class="card-body py-5">
+                    <h3 class="fw-bold text-danger">{{ __('messages.btn_make') }}</h3>
+                    <p class="text-muted">{{ __('messages.desc_make') }}</p>
+                </div>
+                <div class="card-footer bg-white border-0 pb-4">
+                    <!-- Link ke route 'proposal' yang mengarah ke createProposal() -->
+                    <a href="{{ route('proposal') }}" class="btn btn-danger w-100 rounded-pill py-2">{{ __('messages.btn_go') }}</a>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 @endsection

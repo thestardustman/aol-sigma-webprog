@@ -19,14 +19,14 @@ class WebController extends Controller
                 'title' => 'Menyelamatkan Terumbu Karang',
                 'date' => '2025-01-10',
                 'desc' => 'Kegiatan restorasi karang di Bali untuk SDG 14.',
-                'image' => 'https://via.placeholder.com/800x400?text=Ocean+Conservation',
+                'img' => 'https://via.placeholder.com/800x400?text=Ocean+Conservation',
                 'link' => '#'
             ],
             [
                 'title' => 'Infrastruktur Hijau Desa',
                 'date' => '2025-02-15',
                 'desc' => 'Pembangunan jembatan ramah lingkungan SDG 9.',
-                'image' => 'https://via.placeholder.com/800x400?text=Green+Infrastructure',
+                'img' => 'https://via.placeholder.com/800x400?text=Green+Infrastructure',
                 'link' => '#'
             ]
         ];
