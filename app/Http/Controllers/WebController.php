@@ -12,8 +12,6 @@ class WebController extends Controller
 {
     // --- HOME (HEADER & SLIDER) ---
     public function index() {
-        // Data Artikel untuk Slider (Header)
-        // Bisa klik previous/next, ada foto, nama, tanggal, deskripsi
         $articles = [
             [
                 'title' => 'Menyelamatkan Terumbu Karang',
@@ -33,14 +31,12 @@ class WebController extends Controller
         return view('home', compact('articles'));
     }
 
-    // Donasi secara umum
     public function donateGeneral() {
         return view('pages.donate_general');
     }
 
     public function storeGeneral(Request $request) {
 
-        // Status random -> apakah donasi berhasil atau tidak
         $status = rand(0, 1) ? 'successful' : 'denied';
 
         Donation::create([
@@ -53,7 +49,6 @@ class WebController extends Controller
         return redirect()->route('result', ['status' => $status]);
     }
 
-    // PICK WHERE YOUR DONATION GOES ---
     public function listCampaigns() {
         $campaigns = Campaign::all();
         return view('pages.campaign_list', compact('campaigns'));
@@ -62,7 +57,6 @@ class WebController extends Controller
     public function detailCampaign($id) {
         $campaign = Campaign::findOrFail($id);
         
-        // TOP DONATER (10 Besar)
         $topDonaters = Donation::where('campaign_id', $id)
                         ->where('status', 'successful')
                         ->orderBy('amount', 'desc')
@@ -91,19 +85,16 @@ class WebController extends Controller
         return redirect()->route('result', ['status' => $status]);
     }
 
-    // Halaman hasil (abis donasi)
     public function result($status) {
         return view('pages.result', compact('status'));
     }
 
-    // Donasi (Proposal)
     public function createProposal() {
         return view('pages.proposal_create');
     }
 
     public function storeProposal(Request $request) {
 
-        // Upload proposal
         $fileName = time() . '.' . $request->file('file')->extension();
         $request->file('file')->move(public_path('uploads'), $fileName);
 
@@ -125,10 +116,9 @@ class WebController extends Controller
             'proposal_file' => $fileName
         ]);
 
-        return view('pages.proposal_done'); // Halaman "your proposal is proposed!"
+        return view('pages.proposal_done');
     }
 
-    // Pages di navbar
     public function profile() { 
         return view('pages.profile'); 
     }
