@@ -1,53 +1,49 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth; // Tambahkan ini agar aman
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\WebController;
 
-// ====================================================
-// 1. AUTHENTICATION ROUTES (WAJIB ADA)
-// ====================================================
-// Baris ini yang membuat route bernama 'login', 'register', 'logout'
+// 1. Auth Routes
 Auth::routes();
 
-// ====================================================
-// 2. PUBLIC ROUTES (BISA DIAKSES GUEST/SIAPA SAJA)
-// ====================================================
+// 2. Localization (Ganti Bahasa)
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'id'])) {
+        session(['locale' => $locale]);
+    }
+    return back();
+})->name('lang.switch');
 
-// Home Page
+// 3. PUBLIC ROUTES
 Route::get('/', [WebController::class, 'index'])->name('home');
+Route::get('/campaigns', [WebController::class, 'listCampaigns'])->name('pick.list'); 
+Route::get('/campaigns/{id}', [WebController::class, 'detailCampaign'])->name('pick.detail');
 
-// Halaman List Komunitas
-Route::get('/campaigns', [WebController::class, 'listCampaigns'])->name('campaigns.index');
-
-// Halaman Detail Komunitas
-Route::get('/campaigns/{id}', [WebController::class, 'detailCampaign'])->name('campaigns.show');
-
-// Halaman About Us (Footer)
-Route::get('/about-us', [WebController::class, 'about'])->name('about');
-
-
-// ====================================================
-// 3. PROTECTED ROUTES (HARUS LOGIN DULU)
-// ====================================================
+// 4. PROTECTED ROUTES (Login Dulu)
 Route::middleware(['auth'])->group(function () {
 
-    // --- ALUR 1: DONATE GENERAL ---
-    Route::get('/donate', [WebController::class, 'donateGeneral'])->name('donate.general');
+    // --- ALUR 1: Donate General ---
+    // Controller kamu pake 'donateGeneral', route name kita set 'donate' biar cocok sama tombol Home
+    Route::get('/donate', [WebController::class, 'donateGeneral'])->name('donate');
     Route::post('/donate', [WebController::class, 'storeGeneral']);
 
-    // --- ALUR 2: CAMPAIGN PAY ---
-    Route::get('/campaigns/{id}/pay', [WebController::class, 'payCampaign'])->name('campaigns.pay');
+    // --- ALUR 2: Campaign Pay ---
+    Route::get('/campaigns/{id}/pay', [WebController::class, 'payCampaign'])->name('pick.pay');
     Route::post('/campaigns/{id}/pay', [WebController::class, 'storeCampaign']);
 
-    // --- ALUR 3: MAKE DONATION (PROPOSAL) ---
-    Route::get('/proposal', [WebController::class, 'createProposal'])->name('proposal.create');
+    // --- ALUR 3: Proposal ---
+    // Controller kamu pake 'createProposal'
+    Route::get('/proposal', [WebController::class, 'createProposal'])->name('proposal');
     Route::post('/proposal', [WebController::class, 'storeProposal']);
 
-    // --- USER SPECIFIC ---
+    // --- Result Page ---
+    Route::get('/result/{status}', [WebController::class, 'result'])->name('result');
+
+    // --- Footer/Navbar Pages ---
     Route::get('/profile', [WebController::class, 'profile'])->name('profile');
     Route::get('/settings', [WebController::class, 'settings'])->name('settings');
-
-    // --- RESULT PAGE ---
-    Route::get('/result/{status}', [WebController::class, 'result'])->name('result');
 });
+
+// Footer About Us
+Route::get('/about-us', [WebController::class, 'about'])->name('about');

@@ -1,7 +1,11 @@
 @extends('layouts.app')
 @section('content')
-<div class="container text-center mt-5">
-    <h1 class="text-info">Your proposal is proposed!</h1>
-    <a href="{{ route('home') }}" class="btn btn-primary mt-5 btn-lg px-5">GOT IT</a>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="text-center">
+        <div class="mb-3 text-info"><i class="bi bi-file-earmark-check-fill" style="font-size: 5rem;"></i></div>
+        <h1 class="display-4 fw-bold text-info">{{ __('messages.proposed_title') }}</h1>
+        <p class="lead">{{ __('messages.proposed_msg') }}</p>
+        <a href="{{ route('home') }}" class="btn btn-primary btn-lg rounded-pill px-5 mt-4">{{ __('messages.got_it') }}</a>
+    </div>
 </div>
 @endsection
