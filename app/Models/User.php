@@ -30,6 +30,8 @@ class User extends Authenticatable
         'selfie_photo',
         'kyc_status',
         'kyc_verified_at',
+        'is_admin',
+        'kyc_rejection_reason',
     ];
 
     protected $hidden = [
@@ -43,6 +45,7 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'kyc_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_admin' => 'boolean',
         ];
     }
 

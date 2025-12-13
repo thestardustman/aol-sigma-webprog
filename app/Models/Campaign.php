@@ -14,5 +14,9 @@ class Campaign extends Model
         'description', 
         'img', 
         'date',
+        'target',
+        'collected',
+        'status',
+        'rejection_reason',
     ];
 }

@@ -57,13 +57,21 @@ class ProfileController extends Controller
 
     public function uploadKyc(Request $request)
     {
+        $user = Auth::user();
+        
+        // Check 70% profile completion requirement
+        $profileCompletion = $user->getProfileCompletionPercentage();
+        if ($profileCompletion < 70) {
+            return redirect()->route('profile.edit')
+                ->with('error', 'Anda harus melengkapi minimal 70% profil sebelum mengajukan verifikasi KYC. Saat ini: ' . $profileCompletion . '%');
+        }
+
         $request->validate([
             'ktp_number' => 'required|string|size:16',
             'ktp_photo' => 'required|image|mimes:jpg,jpeg,png|max:5120',
             'selfie_photo' => 'required|image|mimes:jpg,jpeg,png|max:5120',
         ]);
 
-        $user = Auth::user();
 
         if ($request->hasFile('ktp_photo')) {
             if ($user->ktp_photo) {

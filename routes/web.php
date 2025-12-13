@@ -42,3 +42,20 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/about-us', [WebController::class, 'about'])->name('about');
+
+// ADMIN ROUTES
+use App\Http\Controllers\AdminController;
+
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+    Route::get('/users/{id}/detail', [AdminController::class, 'userDetail'])->name('admin.users.detail');
+    Route::get('/campaigns', [AdminController::class, 'campaigns'])->name('admin.campaigns');
+    Route::get('/campaigns/{id}', [AdminController::class, 'campaignDetail'])->name('admin.campaigns.detail');
+    Route::get('/approvals', [AdminController::class, 'approvalRequests'])->name('admin.approvals');
+    Route::post('/users/{id}/approve', [AdminController::class, 'approveUser'])->name('admin.users.approve');
+    Route::post('/users/{id}/reject', [AdminController::class, 'rejectUser'])->name('admin.users.reject');
+    Route::post('/campaigns/{id}/approve', [AdminController::class, 'approveCampaign'])->name('admin.campaigns.approve');
+    Route::post('/campaigns/{id}/reject', [AdminController::class, 'rejectCampaign'])->name('admin.campaigns.reject');
+    Route::get('/history', [AdminController::class, 'approvalHistory'])->name('admin.history');
+});

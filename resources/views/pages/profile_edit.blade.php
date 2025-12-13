@@ -102,12 +102,35 @@
                 </div>
 
                 <div class="p-4 p-md-5">
+                    @if(session('error'))
+                        <div class="alert alert-danger">
+                            <i class="bi bi-exclamation-triangle me-2"></i>{{ session('error') }}
+                        </div>
+                    @endif
+
+                    @if($user->kyc_status === 'rejected' && $user->kyc_rejection_reason)
+                        <div class="alert alert-danger">
+                            <strong><i class="bi bi-x-circle me-2"></i>Pengajuan Anda ditolak:</strong><br>
+                            {{ $user->kyc_rejection_reason }}
+                        </div>
+                    @endif
+
                     @if($user->isKycPending())
                         <div class="alert alert-info">
                             <i class="bi bi-hourglass-split me-2"></i>
                             Dokumen Anda sedang dalam proses verifikasi. Mohon tunggu konfirmasi dari admin.
                         </div>
                     @else
+                        @php $profileCompletion = $user->getProfileCompletionPercentage(); @endphp
+                        
+                        @if($profileCompletion < 70)
+                            <div class="alert alert-warning">
+                                <i class="bi bi-exclamation-triangle me-2"></i>
+                                <strong>Profil belum lengkap!</strong> Anda harus melengkapi minimal 70% profil sebelum mengajukan verifikasi KYC.
+                                <br>Kelengkapan saat ini: <strong>{{ $profileCompletion }}%</strong>
+                            </div>
+                        @endif
+
                         <p class="text-muted mb-4">
                             Untuk membuat campaign penggalangan dana, Anda perlu memverifikasi identitas dengan mengunggah foto KTP dan selfie.
                         </p>

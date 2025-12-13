@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SDG-HOPE</title>
+    <title>SemutHitam</title>
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css?family=Nunito:400,600,700,800" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -43,7 +43,7 @@
         <nav class="navbar navbar-expand-md navbar-light shadow-sm sticky-top py-3">
             <div class="container">
                 <a class="navbar-brand fw-bold fs-3" href="{{ url('/') }}" style="color: var(--primary-color);">
-                    Bantu.in
+                    SemutHitam
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
                     <span class="navbar-toggler-icon"></span>
@@ -112,12 +112,12 @@
                         <ul class="list-unstyled text-secondary small" style="line-height: 1.8;">
                             <li>Jl. SDG No. 1, Jakarta</li>
                             <li>+62 812-0000-0000</li>
-                            <li>help@sdghope.com</li>
+                            <li>help@semuthitam.com</li>
                         </ul>
                     </div>
 
                     <div class="col-md-4 text-center">
-                        <h6 class="text-white fw-bold text-uppercase mb-3">SDG-HOPE</h6>
+                        <h6 class="text-white fw-bold text-uppercase mb-3">SemutHitam</h6>
                         <p class="text-secondary small mb-0">&copy; 2025 Hak Cipta Dilindungi.</p>
                     </div>
 
