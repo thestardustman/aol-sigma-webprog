@@ -98,6 +98,12 @@ class WebController extends Controller
         $fileName = time() . '.' . $request->file('file')->extension();
         $request->file('file')->move(public_path('uploads'), $fileName);
 
+        // Handle thumbnail upload
+        $thumbnailPath = null;
+        if ($request->hasFile('thumbnail')) {
+            $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+        }
+
         Proposal::create([
             'user_id' => Auth::id(),
             'activity_name' => $request->activity_name,
@@ -113,7 +119,9 @@ class WebController extends Controller
             'pic_province' => '-',
             'pic_country' => '-',
             'pic_gender' => '-', 
-            'proposal_file' => $fileName
+            'proposal_file' => $fileName,
+            'thumbnail' => $thumbnailPath,
+            'status' => 'pending',
         ]);
 
         return view('pages.proposal_done');
@@ -129,4 +137,30 @@ class WebController extends Controller
 
     // Pages di footer
     public function about() { return view('pages.about'); }
+
+    // My Campaigns for verified users
+    public function myCampaigns() {
+        $user = Auth::user();
+        
+        // Check if user is verified
+        if (!$user->isKycVerified()) {
+            return redirect()->route('profile.edit')->with('error', 'Anda harus terverifikasi untuk melihat campaign.');
+        }
+        
+        // Get user's proposals
+        $proposals = Proposal::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+        
+        // Get campaigns created from user's approved proposals
+        $campaignTitles = $proposals->where('status', 'approved')
+            ->pluck('activity_name')
+            ->toArray();
+        
+        $campaigns = Campaign::whereIn('title', $campaignTitles)
+            ->orderBy('created_at', 'desc')
+            ->get();
+        
+        return view('pages.my_campaigns', compact('proposals', 'campaigns'));
+    }
 }

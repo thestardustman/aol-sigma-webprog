@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\WebController;
+use App\Http\Controllers\ProfileController;
 
 // Auth Routes
 Auth::routes();
@@ -12,7 +13,7 @@ Route::get('/', [WebController::class, 'index'])->name('home');
 Route::get('/campaigns', [WebController::class, 'listCampaigns'])->name('pick.list');
 Route::get('/campaigns/{id}', [WebController::class, 'detailCampaign'])->name('pick.detail');
 
-// PROTECTED ROUTES (Login Dulu)
+// PROTECTED ROUTES (Login Required)
 Route::middleware(['auth'])->group(function () {
     // Donate General
     Route::get('/donate', [WebController::class, 'donateGeneral'])->name('donate');
@@ -26,10 +27,41 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/proposal', [WebController::class, 'createProposal'])->name('proposal');
     Route::post('/proposal', [WebController::class, 'storeProposal']);
 
-    // Result, Profile, Settings
+    // Result
     Route::get('/result/{status}', [WebController::class, 'result'])->name('result');
-    Route::get('/profile', [WebController::class, 'profile'])->name('profile');
+    
+    // Profile Routes
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/kyc', [ProfileController::class, 'uploadKyc'])->name('profile.kyc');
+    Route::post('/profile/photo', [ProfileController::class, 'uploadPhoto'])->name('profile.photo');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
+
+    // My Campaigns (verified users only)
+    Route::get('/my-campaigns', [WebController::class, 'myCampaigns'])->name('my-campaigns');
+
+    // Settings
     Route::get('/settings', [WebController::class, 'settings'])->name('settings');
 });
 
 Route::get('/about-us', [WebController::class, 'about'])->name('about');
+
+// ADMIN ROUTES
+use App\Http\Controllers\AdminController;
+
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+    Route::get('/users/{id}/detail', [AdminController::class, 'userDetail'])->name('admin.users.detail');
+    Route::get('/campaigns', [AdminController::class, 'campaigns'])->name('admin.campaigns');
+    Route::get('/campaigns/{id}', [AdminController::class, 'campaignDetail'])->name('admin.campaigns.detail');
+    Route::get('/approvals', [AdminController::class, 'approvalRequests'])->name('admin.approvals');
+    Route::post('/users/{id}/approve', [AdminController::class, 'approveUser'])->name('admin.users.approve');
+    Route::post('/users/{id}/reject', [AdminController::class, 'rejectUser'])->name('admin.users.reject');
+    Route::post('/campaigns/{id}/approve', [AdminController::class, 'approveCampaign'])->name('admin.campaigns.approve');
+    Route::post('/campaigns/{id}/reject', [AdminController::class, 'rejectCampaign'])->name('admin.campaigns.reject');
+    Route::get('/history', [AdminController::class, 'approvalHistory'])->name('admin.history');
+    Route::delete('/users/{id}', [AdminController::class, 'deleteUser'])->name('admin.users.delete');
+    Route::delete('/campaigns/{id}', [AdminController::class, 'deleteCampaign'])->name('admin.campaigns.delete');
+});

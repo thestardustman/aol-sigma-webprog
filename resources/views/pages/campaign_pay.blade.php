@@ -45,7 +45,46 @@
                         <div class="form-text text-end mt-1 small">Minimal donasi Rp 1.000</div>
                     </div>
 
-                    <!-- 4. Tombol Bayar -->
+                    <!-- 4. Payment Method Selection -->
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold text-secondary mb-2">Pilih Metode Pembayaran</label>
+                        
+                        <div class="payment-method-list">
+                            <div class="form-check payment-option mb-2">
+                                <input class="form-check-input" type="radio" name="payment_method" id="ewallet" value="ewallet" checked>
+                                <label class="form-check-label d-flex align-items-center justify-content-between w-100" for="ewallet">
+                                    <span><i class="bi bi-wallet2 me-2 text-success"></i> E-Wallet (GoPay, OVO, Dana)</span>
+                                    <i class="bi bi-chevron-right text-muted"></i>
+                                </label>
+                            </div>
+                            
+                            <div class="form-check payment-option mb-2">
+                                <input class="form-check-input" type="radio" name="payment_method" id="bank" value="bank">
+                                <label class="form-check-label d-flex align-items-center justify-content-between w-100" for="bank">
+                                    <span><i class="bi bi-bank me-2 text-primary"></i> Transfer Bank</span>
+                                    <i class="bi bi-chevron-right text-muted"></i>
+                                </label>
+                            </div>
+                            
+                            <div class="form-check payment-option mb-2">
+                                <input class="form-check-input" type="radio" name="payment_method" id="card" value="card">
+                                <label class="form-check-label d-flex align-items-center justify-content-between w-100" for="card">
+                                    <span><i class="bi bi-credit-card me-2 text-danger"></i> Kartu Kredit/Debit</span>
+                                    <i class="bi bi-chevron-right text-muted"></i>
+                                </label>
+                            </div>
+                            
+                            <div class="form-check payment-option">
+                                <input class="form-check-input" type="radio" name="payment_method" id="qris" value="qris">
+                                <label class="form-check-label d-flex align-items-center justify-content-between w-100" for="qris">
+                                    <span><i class="bi bi-qr-code me-2 text-dark"></i> QRIS</span>
+                                    <i class="bi bi-chevron-right text-muted"></i>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Tombol Bayar -->
                     <button type="submit" class="btn btn-success btn-pill w-100 py-3 fs-5 shadow hover-scale">
                         Lanjutkan Pembayaran <i class="bi bi-arrow-right ms-2"></i>
                     </button>
@@ -68,4 +107,30 @@
         document.getElementById('amountInput').value = value;
     }
 </script>
+
+<style>
+    .payment-option {
+        background: #f8f9fa;
+        border: 2px solid #e9ecef;
+        border-radius: 10px;
+        padding: 12px 15px;
+        transition: all 0.2s;
+        cursor: pointer;
+    }
+    .payment-option:hover {
+        border-color: #198754;
+        background: #f0fff4;
+    }
+    .payment-option:has(input:checked) {
+        border-color: #198754;
+        background: #d1e7dd;
+    }
+    .payment-option .form-check-input {
+        margin-top: 0.3em;
+    }
+    .payment-option label {
+        cursor: pointer;
+        padding-left: 8px;
+    }
+</style>
 @endsection

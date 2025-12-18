@@ -30,6 +30,17 @@ class User extends Authenticatable
         'country',
         'zip_code',
         'gender',
+<<<<<<< HEAD
+=======
+        'profile_photo',
+        'ktp_number',
+        'ktp_photo',
+        'selfie_photo',
+        'kyc_status',
+        'kyc_verified_at',
+        'is_admin',
+        'kyc_rejection_reason',
+>>>>>>> ver_satya
     ];
 
     /**
@@ -52,9 +63,49 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_admin' => 'boolean',
         ];
     }
 
+<<<<<<< HEAD
+=======
+    public function isKycVerified(): bool
+    {
+        // Admin is always verified
+        if ($this->is_admin) {
+            return true;
+        }
+        return $this->kyc_status === 'approved';
+    }
+
+    public function isKycPending(): bool
+    {
+        return $this->kyc_status === 'pending';
+    }
+
+    public function getProfileCompletionPercentage(): int
+    {
+        $fields = ['phone', 'address', 'city', 'province', 'country', 'zip_code', 'birth_date', 'gender'];
+        $filled = 0;
+        
+        foreach ($fields as $field) {
+            if (!empty($this->$field)) {
+                $filled++;
+            }
+        }
+        
+        $base = ($filled / count($fields)) * 70;
+        
+        if ($this->isKycVerified()) {
+            $base += 30;
+        } elseif ($this->isKycPending()) {
+            $base += 15;
+        }
+        
+        return (int) min($base, 100);
+    }
+
+>>>>>>> ver_satya
     public function proposals()
     {
         return $this->hasMany(Proposal::class);

@@ -22,6 +22,9 @@ class Proposal extends Model
         'pic_zip',
         'pic_gender',
         'proposal_file',
+        'thumbnail',
+        'status',
+        'rejection_reason',
 ];
 
     public function user() {
