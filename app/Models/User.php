@@ -64,8 +64,6 @@ class User extends Authenticatable
         ];
     }
 
-<<<<<<< HEAD
-=======
     public function isKycVerified(): bool
     {
         // Admin is always verified
@@ -102,7 +100,6 @@ class User extends Authenticatable
         return (int) min($base, 100);
     }
 
->>>>>>> ver_satya
     public function proposals()
     {
         return $this->hasMany(Proposal::class);
