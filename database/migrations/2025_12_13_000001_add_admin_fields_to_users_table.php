@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->boolean('is_admin')->default(false)->after('remember_token');
-            $table->text('kyc_rejection_reason')->nullable()->after('kyc_verified_at');
+            $table->text('kyc_rejection_reason')->nullable();
         });
     }
 
