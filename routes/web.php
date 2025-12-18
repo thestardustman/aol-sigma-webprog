@@ -36,6 +36,10 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/profile/kyc', [ProfileController::class, 'uploadKyc'])->name('profile.kyc');
     Route::post('/profile/photo', [ProfileController::class, 'uploadPhoto'])->name('profile.photo');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
+
+    // My Campaigns (verified users only)
+    Route::get('/my-campaigns', [WebController::class, 'myCampaigns'])->name('my-campaigns');
 
     // Settings
     Route::get('/settings', [WebController::class, 'settings'])->name('settings');
@@ -58,4 +62,6 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::post('/campaigns/{id}/approve', [AdminController::class, 'approveCampaign'])->name('admin.campaigns.approve');
     Route::post('/campaigns/{id}/reject', [AdminController::class, 'rejectCampaign'])->name('admin.campaigns.reject');
     Route::get('/history', [AdminController::class, 'approvalHistory'])->name('admin.history');
+    Route::delete('/users/{id}', [AdminController::class, 'deleteUser'])->name('admin.users.delete');
+    Route::delete('/campaigns/{id}', [AdminController::class, 'deleteCampaign'])->name('admin.campaigns.delete');
 });

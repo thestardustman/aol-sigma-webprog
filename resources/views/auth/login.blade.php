@@ -34,13 +34,13 @@
                         <!-- Social Buttons (Dibuat Grid biar rapi) -->
                         <div class="row g-2">
                             <div class="col-4">
-                                <button type="button" class="btn btn-outline-danger w-100 btn-sm py-2"><i class="bi bi-google"></i> Google</button>
+                                <button type="button" class="btn btn-outline-danger w-100 btn-sm py-2" onclick="alert('Fitur login dengan Google belum tersedia.')"><i class="bi bi-google"></i> Google</button>
                             </div>
                             <div class="col-4">
-                                <button type="button" class="btn btn-outline-dark w-100 btn-sm py-2"><i class="bi bi-apple"></i> Apple</button>
+                                <button type="button" class="btn btn-outline-dark w-100 btn-sm py-2" onclick="alert('Fitur login dengan Apple belum tersedia.')"><i class="bi bi-apple"></i> Apple</button>
                             </div>
                             <div class="col-4">
-                                <button type="button" class="btn btn-outline-primary w-100 btn-sm py-2"><i class="bi bi-facebook"></i> FB</button>
+                                <button type="button" class="btn btn-outline-primary w-100 btn-sm py-2" onclick="alert('Fitur login dengan Facebook belum tersedia.')"><i class="bi bi-facebook"></i> FB</button>
                             </div>
                         </div>
 

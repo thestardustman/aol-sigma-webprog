@@ -51,6 +51,10 @@ class User extends Authenticatable
 
     public function isKycVerified(): bool
     {
+        // Admin is always verified
+        if ($this->is_admin) {
+            return true;
+        }
         return $this->kyc_status === 'approved';
     }
 

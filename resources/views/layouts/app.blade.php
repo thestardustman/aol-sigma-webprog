@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SemutHitam</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/logo_semuthitam_webprog-removebg-preview.png') }}">
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css?family=Nunito:400,600,700,800" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -42,7 +43,8 @@
         <!-- NAVBAR -->
         <nav class="navbar navbar-expand-md navbar-light shadow-sm sticky-top py-3">
             <div class="container">
-                <a class="navbar-brand fw-bold fs-3" href="{{ url('/') }}" style="color: var(--primary-color);">
+                <a class="navbar-brand fw-bold fs-3 d-flex align-items-center" href="{{ url('/') }}" style="color: var(--primary-color);">
+                    <img src="{{ asset('images/logo_semuthitam_webprog-removebg-preview.png') }}" alt="Logo" height="35" class="me-2">
                     SemutHitam
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
@@ -72,10 +74,20 @@
                                         <i class="bi bi-person me-2"></i> Profile Saya
                                     </a>
                                     
-                                    <!-- LINK KE SETTINGS -->
-                                    <a class="dropdown-item rounded-2 py-2" href="{{ route('settings') }}">
-                                        <i class="bi bi-gear me-2"></i> Pengaturan
+                                    <!-- ADMIN LINKS -->
+                                    @if(Auth::user()->is_admin)
+                                    <a class="dropdown-item rounded-2 py-2" href="{{ route('admin.dashboard') }}">
+                                        <i class="bi bi-speedometer2 me-2"></i> Admin Dashboard
                                     </a>
+                                    <a class="dropdown-item rounded-2 py-2" href="{{ route('my-campaigns') }}">
+                                        <i class="bi bi-megaphone me-2"></i> Campaign Saya
+                                    </a>
+                                    @elseif(Auth::user()->isKycVerified())
+                                    <!-- LINK KE MY CAMPAIGNS (verified users only) -->
+                                    <a class="dropdown-item rounded-2 py-2" href="{{ route('my-campaigns') }}">
+                                        <i class="bi bi-megaphone me-2"></i> Campaign Saya
+                                    </a>
+                                    @endif
 
                                     <hr class="dropdown-divider">
 

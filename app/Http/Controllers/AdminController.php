@@ -178,6 +178,7 @@ class AdminController extends Controller
             'target' => $proposal->target_amount,
             'collected' => 0,
             'date' => $proposal->activity_date,
+            'img' => $proposal->thumbnail,
             'status' => 'approved',
         ]);
 
@@ -230,5 +231,47 @@ class AdminController extends Controller
         $logs = $query->paginate(30);
         
         return view('admin.history', compact('logs'));
+    }
+
+    // Delete User
+    public function deleteUser($id)
+    {
+        $user = User::findOrFail($id);
+        
+        // Don't allow deleting admin users
+        if ($user->is_admin) {
+            return redirect()->back()->with('error', 'Cannot delete admin users!');
+        }
+        
+        $user->delete();
+        
+        ApprovalLog::create([
+            'admin_id' => Auth::id(),
+            'action' => 'deleted',
+            'target_type' => 'user',
+            'target_id' => $id,
+            'reason' => 'User deleted by admin',
+            'feedback' => null,
+        ]);
+        
+        return redirect()->back()->with('success', 'User berhasil dihapus!');
+    }
+
+    // Delete Campaign
+    public function deleteCampaign($id)
+    {
+        $campaign = Campaign::findOrFail($id);
+        $campaign->delete();
+        
+        ApprovalLog::create([
+            'admin_id' => Auth::id(),
+            'action' => 'deleted',
+            'target_type' => 'campaign',
+            'target_id' => $id,
+            'reason' => 'Campaign deleted by admin',
+            'feedback' => null,
+        ]);
+        
+        return redirect()->back()->with('success', 'Campaign berhasil dihapus!');
     }
 }

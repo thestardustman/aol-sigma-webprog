@@ -106,6 +106,16 @@
                         <strong>Rejection Reason:</strong> {{ $user->kyc_rejection_reason }}
                     </div>
                 @endif
+                
+                <hr class="my-2">
+                <form action="{{ route('admin.users.delete', $user->id) }}" method="POST" 
+                      onsubmit="return confirm('Are you sure you want to delete this user? This action cannot be undone.');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        <i class="bi bi-trash me-1"></i> Delete User
+                    </button>
+                </form>
             </div>
         </div>
     </div>

@@ -64,6 +64,16 @@
                     <h6 class="text-primary fw-bold small mb-2">Image</h6>
                     <img src="{{ asset('storage/' . $campaign->img) }}" class="img-fluid rounded" style="max-height: 150px;">
                 @endif
+                
+                <hr class="my-2">
+                <form action="{{ route('admin.campaigns.delete', $campaign->id) }}" method="POST" 
+                      onsubmit="return confirm('Are you sure you want to delete this campaign? This action cannot be undone.');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        <i class="bi bi-trash me-1"></i> Delete Campaign
+                    </button>
+                </form>
             </div>
         </div>
     </div>

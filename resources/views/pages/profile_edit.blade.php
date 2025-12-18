@@ -95,6 +95,46 @@
                 </form>
             </div>
 
+            <!-- Password Change Section -->
+            <div class="card-std p-0 overflow-hidden mt-4">
+                <div class="bg-dark text-white p-4">
+                    <h5 class="fw-bold mb-0"><i class="bi bi-key me-2"></i>Ubah Password</h5>
+                </div>
+                
+                <form action="{{ route('profile.password') }}" method="POST" class="p-4">
+                    @csrf
+                    @method('PUT')
+                    
+                    @if(session('password_success'))
+                        <div class="alert alert-success">{{ session('password_success') }}</div>
+                    @endif
+                    @if(session('password_error'))
+                        <div class="alert alert-danger">{{ session('password_error') }}</div>
+                    @endif
+                    
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label class="form-label small fw-bold text-muted">Password Saat Ini</label>
+                            <input type="password" name="current_password" class="form-control @error('current_password') is-invalid @enderror" required>
+                            @error('current_password')<span class="invalid-feedback">{{ $message }}</span>@enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold text-muted">Password Baru</label>
+                            <input type="password" name="new_password" class="form-control @error('new_password') is-invalid @enderror" required>
+                            @error('new_password')<span class="invalid-feedback">{{ $message }}</span>@enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold text-muted">Konfirmasi Password Baru</label>
+                            <input type="password" name="new_password_confirmation" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-dark btn-pill px-4 mt-3">
+                        <i class="bi bi-check-lg me-2"></i>Ubah Password
+                    </button>
+                </form>
+            </div>
+
             @if(!$user->isKycVerified())
             <div class="card-std p-0 overflow-hidden mt-4">
                 <div class="bg-warning text-dark p-4">

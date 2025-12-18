@@ -86,6 +86,12 @@
                                 <hr class="my-4">
 
                                 <div class="mb-3">
+                                    <label class="form-label small fw-bold text-secondary">Thumbnail Campaign</label>
+                                    <input type="file" name="thumbnail" class="form-control" accept="image/*">
+                                    <small class="text-muted">Upload gambar thumbnail untuk campaign (opsional)</small>
+                                </div>
+
+                                <div class="mb-3">
                                     <label class="form-label small fw-bold text-danger">Upload Proposal (PDF)</label>
                                     <input type="file" name="file" class="form-control" accept=".pdf,.doc,.docx" required>
                                 </div>

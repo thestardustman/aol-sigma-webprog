@@ -117,4 +117,24 @@ class ProfileController extends Controller
 
         return redirect()->route('profile')->with('success', 'Foto profil berhasil diperbarui!');
     }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required|string',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = Auth::user();
+
+        // Check if current password is correct
+        if (!\Hash::check($request->current_password, $user->password)) {
+            return redirect()->route('profile.edit')->with('password_error', 'Password saat ini salah!');
+        }
+
+        $user->password = \Hash::make($request->new_password);
+        $user->save();
+
+        return redirect()->route('profile.edit')->with('password_success', 'Password berhasil diubah!');
+    }
 }
