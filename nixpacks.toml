@@ -13,4 +13,4 @@ cmds = [
 nixPkgs = ["php83", "php83Extensions.pdo", "php83Extensions.pdo_mysql", "php83Extensions.mbstring", "php83Extensions.xml", "php83Extensions.curl", "php83Extensions.gd", "php83Extensions.zip"]
 
 [start]
-cmd = "php artisan migrate --force; php artisan db:seed --force; php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"
+cmd = "echo 'Starting deployment...' && php artisan migrate --force --verbose && echo 'Migrations complete' && php artisan db:seed --force && echo 'Seeding complete' && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"
