@@ -30,8 +30,6 @@ class User extends Authenticatable
         'country',
         'zip_code',
         'gender',
-<<<<<<< HEAD
-=======
         'profile_photo',
         'ktp_number',
         'ktp_photo',
@@ -40,7 +38,6 @@ class User extends Authenticatable
         'kyc_verified_at',
         'is_admin',
         'kyc_rejection_reason',
->>>>>>> ver_satya
     ];
 
     /**
