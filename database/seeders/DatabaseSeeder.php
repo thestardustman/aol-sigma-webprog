@@ -11,21 +11,23 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        // 1. Buat 1 Akun Admin/User Tetap (biar gampang login)
-        // Login pakai: admin@sdghope.com / password
+        // 1. Buat 1 Akun Admin (untuk deploy)
+        // Login pakai: admin@semuthitam.com / adminadmin
         User::create([
-            'name' => 'Admin User',
-            'email' => 'admin@sdghope.com',
-            'password' => bcrypt('password'),
+            'name' => 'Admin SemutHitam',
+            'email' => 'admin@semuthitam.com',
+            'password' => bcrypt('adminadmin'),
             'phone' => '081234567890',
-            'address' => 'Jl. SDG Pusat No. 1, Jakarta',
+            'address' => 'Jl. SemutHitam No. 1, Jakarta',
             'birth_date' => '2000-01-01',
-            'birth_place' => 'Rumah sakit',
-            'city' => 'Jakarta Barat',
+            'birth_place' => 'Jakarta',
+            'city' => 'Jakarta',
             'province' => 'DKI Jakarta',
             'country' => 'Indonesia',
-            'zip_code' => '1234',
-            'gender' => 'Laki-laki'
+            'zip_code' => '12345',
+            'gender' => 'Laki-laki',
+            'is_admin' => true,
+            'kyc_status' => 'approved',
         ]);
 
         // 2. Buat 10 User Random lain
