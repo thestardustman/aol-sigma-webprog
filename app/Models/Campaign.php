@@ -19,4 +19,8 @@ class Campaign extends Model
         'status',
         'rejection_reason',
     ];
+    
+    public function donations() {
+        return $this->hasMany(Donation::class);
+    }
 }
