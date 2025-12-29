@@ -14,17 +14,24 @@ class WebController extends Controller
     public function index() {
         $articles = [
             [
-                'title' => 'Menyelamatkan Terumbu Karang',
-                'date' => '2025-01-10',
-                'description' => 'Kegiatan restorasi karang di Bali untuk SDG 14.',
-                'img' => 'https://via.placeholder.com/800x400?text=Ocean+Conservation',
+                'title' => 'Bantu Pendidikan Anak Pedalaman Papua',
+                'date' => '2025-01-15',
+                'description' => 'Kami mengumpulkan dana untuk membangun perpustakaan dan menyediakan buku pelajaran bagi 500 anak di daerah pedalaman Papua. Mari bersama wujudkan pendidikan merata!',
+                'img' => 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&h=400&fit=crop',
                 'link' => '#'
             ],
             [
-                'title' => 'Infrastruktur Hijau Desa',
-                'date' => '2025-02-15',
-                'description' => 'Pembangunan jembatan ramah lingkungan SDG 9.',
-                'img' => 'https://via.placeholder.com/800x400?text=Green+Infrastructure',
+                'title' => 'Rumah Harapan untuk Korban Bencana',
+                'date' => '2025-02-20',
+                'description' => 'Program pembangunan rumah layak huni bagi 50 keluarga korban gempa. Setiap donasi Anda adalah harapan baru bagi mereka yang kehilangan tempat tinggal.',
+                'img' => 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&h=400&fit=crop',
+                'link' => '#'
+            ],
+            [
+                'title' => 'Pangan Bergizi untuk Balita Kurang Gizi',
+                'date' => '2025-03-10',
+                'description' => 'Kampanye penyediaan makanan bergizi untuk 1000 balita di daerah terpencil. Nutrisi yang baik adalah hak setiap anak untuk tumbuh sehat dan cerdas.',
+                'img' => 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=400&fit=crop',
                 'link' => '#'
             ]
         ];
