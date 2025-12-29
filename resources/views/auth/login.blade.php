@@ -34,13 +34,25 @@
                         <!-- Social Buttons (Dibuat Grid biar rapi) -->
                         <div class="row g-2">
                             <div class="col-4">
-                                <button type="button" class="btn btn-outline-danger w-100 btn-sm py-2" onclick="alert('Fitur login dengan Google belum tersedia.')"><i class="bi bi-google"></i> Google</button>
+                                <button type="button" class="btn btn-outline-danger w-100 btn-sm py-2" 
+                                        data-bs-toggle="modal" data-bs-target="#socialLoginModal" 
+                                        data-provider="Google">
+                                    <i class="bi bi-google"></i> Google
+                                </button>
                             </div>
                             <div class="col-4">
-                                <button type="button" class="btn btn-outline-dark w-100 btn-sm py-2" onclick="alert('Fitur login dengan Apple belum tersedia.')"><i class="bi bi-apple"></i> Apple</button>
+                                <button type="button" class="btn btn-outline-dark w-100 btn-sm py-2" 
+                                        data-bs-toggle="modal" data-bs-target="#socialLoginModal" 
+                                        data-provider="Apple">
+                                    <i class="bi bi-apple"></i> Apple
+                                </button>
                             </div>
                             <div class="col-4">
-                                <button type="button" class="btn btn-outline-primary w-100 btn-sm py-2" onclick="alert('Fitur login dengan Facebook belum tersedia.')"><i class="bi bi-facebook"></i> FB</button>
+                                <button type="button" class="btn btn-outline-primary w-100 btn-sm py-2" 
+                                        data-bs-toggle="modal" data-bs-target="#socialLoginModal" 
+                                        data-provider="Facebook">
+                                    <i class="bi bi-facebook"></i> FB
+                                </button>
                             </div>
                         </div>
 
@@ -55,4 +67,38 @@
         </div>
     </div>
 </div>
+
+<!-- Social Login Modal -->
+<div class="modal fade" id="socialLoginModal" tabindex="-1" aria-labelledby="socialLoginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-light border-0">
+                <h5 class="modal-title fw-bold" id="socialLoginModalLabel">
+                    <i class="bi bi-info-circle text-primary me-2"></i>Fitur Belum Tersedia
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center py-4">
+                <div class="mb-3" style="font-size: 3rem;">⚠️</div>
+                <p class="mb-0">Fitur login dengan <strong id="providerName">Provider</strong> belum tersedia.</p>
+            </div>
+            <div class="modal-footer border-0 bg-light">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK, Mengerti</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Update modal content based on which social button was clicked
+    const socialLoginModal = document.getElementById('socialLoginModal');
+    if (socialLoginModal) {
+        socialLoginModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const provider = button.getAttribute('data-provider');
+            const providerName = document.getElementById('providerName');
+            providerName.textContent = provider;
+        });
+    }
+</script>
 @endsection
