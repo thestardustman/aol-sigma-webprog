@@ -38,7 +38,7 @@
                     <div class="col-md-6 p-5 d-flex flex-column justify-content-center">
                         <div class="mb-2"><span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill small fw-bold">BERITA</span></div>
                         <h3 class="fw-bold text-dark mb-2">{{ $art['title'] }}</h3>
-                        <p class="text-muted small mb-3"><i class="bi bi-calendar-event me-2"></i> {{ $art['date'] }}</p>
+                        <p class="text-muted small mb-3"><i class="bi bi-calendar-event me-1"></i>{{ $art['date'] }}</p>
                         <p class="text-secondary">{{ $art['description'] }}</p>
                     </div>
                 </div>
