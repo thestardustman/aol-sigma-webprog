@@ -75,7 +75,10 @@ class AdminController extends Controller
             $query->where('status', $request->status);
         }
 
-        $campaigns = $query->orderBy('created_at', 'desc')->paginate(20);
+        // Calculate collected amount from successful donations
+        $campaigns = $query->withSum(['donations as collected_amount' => function($query) {
+            $query->where('status', 'successful');
+        }], 'amount')->orderBy('created_at', 'desc')->paginate(20);
         
         return view('admin.campaigns', compact('campaigns'));
     }

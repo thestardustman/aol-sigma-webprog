@@ -54,7 +54,7 @@
                     <tr><td class="text-muted" width="120">Title</td><td>{{ $campaign->title }}</td></tr>
                     <tr><td class="text-muted">Community</td><td>{{ $campaign->community_name }}</td></tr>
                     <tr><td class="text-muted">Target</td><td class="text-success fw-bold">Rp {{ number_format($campaign->target ?? 0) }}</td></tr>
-                    <tr><td class="text-muted">Collected</td><td>Rp {{ number_format($campaign->collected ?? 0) }}</td></tr>
+                    <tr><td class="text-muted">Collected</td><td>Rp {{ number_format($campaign->collected_amount ?? 0) }}</td></tr>
                     <tr><td class="text-muted">Date</td><td>{{ $campaign->date ?? '-' }}</td></tr>
                     <tr><td class="text-muted">Description</td><td>{{ $campaign->description ?? '-' }}</td></tr>
                 </table>
